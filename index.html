@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#170d14">
+<title>Jessica’s Closet</title>
+<style>
+:root{--pink:#f34f9b;--pink2:#ff8ac2;--ink:#1b1018;--cream:#fff8f8;--muted:#8e7785;--mint:#31d6a2}
+*{box-sizing:border-box}body{margin:0;background:#f6edf2;color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button{font:inherit;cursor:pointer;border:0}
+.app{max-width:1100px;margin:auto;background:#fff;min-height:100dvh;box-shadow:0 0 35px #28132218}
+header{height:68px;background:#170d14;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 16px;gap:10px}
+.logo{font-family:Georgia,serif;font-style:italic;font-size:23px;color:#ff9acb;line-height:1}.logo small{display:block;font:700 9px system-ui;letter-spacing:5px;text-align:center;color:#fff;margin-top:5px}
+.wallet{display:flex;gap:6px}.coin{background:#2c1825;border:1px solid #503044;border-radius:24px;padding:8px 10px;font-weight:800;font-size:11px;white-space:nowrap}
+main{display:grid;grid-template-columns:minmax(0,1fr) 365px;min-height:calc(100dvh - 132px)}
+.preview{position:relative;min-height:650px;overflow:hidden;background:linear-gradient(145deg,#eededb,#fff5f2 45%,#d9c1bc);display:flex;align-items:flex-end;justify-content:center}
+.room{position:absolute;inset:0;background:linear-gradient(90deg,#f9e9e4 0 7%,transparent 7% 93%,#f9e9e4 93%),linear-gradient(180deg,#d7bcb7,#f9efea 52%,#c6aaa2);opacity:.6}
+.room:before{content:"";position:absolute;inset:0 8% 0;background:repeating-linear-gradient(90deg,#fff5 0 2px,transparent 2px 110px),linear-gradient(90deg,#b9908d22,transparent 35%,#fff5 50%,transparent 75%)}
+.neon{position:absolute;right:9%;top:13%;font-family:Georgia,serif;font-style:italic;color:#f04f9b;text-shadow:0 0 10px white,0 0 22px #f7a1cc;font-size:clamp(17px,3vw,27px);transform:rotate(-7deg);text-align:center}
+.label{position:absolute;left:16px;top:16px;background:#fffaf8df;border:1px solid #f1dce7;padding:10px 13px;border-radius:22px;font-weight:900;font-size:11px;letter-spacing:.8px}
+.avatar{position:relative;width:min(58%,330px);height:520px;margin-bottom:52px;filter:drop-shadow(0 15px 12px #50302d2b)}
+.hair-back{position:absolute;left:19%;top:3%;width:63%;height:28%;border-radius:48% 48% 42% 42%;background:radial-gradient(ellipse at 42% 20%,#74442f,#28151b 72%);box-shadow:-15px 12px 0 -4px #452329,13px 15px 0 -3px #3a2025}
+.face{position:absolute;z-index:3;left:33%;top:7%;width:36%;height:17%;border-radius:44% 44% 48% 48%;background:linear-gradient(90deg,#92533f,#d18b70 50%,#a76551)}
+.face:before{content:"";position:absolute;left:-7%;top:46%;width:13%;height:18%;border-radius:50%;background:#bc755d;box-shadow:calc(36% + 65px) 0 #bc755d}
+.fringe{position:absolute;z-index:4;left:29%;top:4%;width:44%;height:9%;background:linear-gradient(90deg,#382022,#4a2824,#24151b);border-radius:65% 60% 25% 25%;transform:rotate(-2deg)}
+.eye{position:absolute;top:43%;width:19%;height:6%;background:#fff;border-radius:50%}.eye:after{content:"";position:absolute;left:35%;width:35%;height:100%;border-radius:50%;background:#321d1b}.eye.l{left:15%}.eye.r{right:15%}
+.brow{position:absolute;top:36%;width:24%;height:3px;background:#472521;border-radius:50%}.brow.l{left:11%}.brow.r{right:11%}
+.nose{position:absolute;left:48%;top:48%;height:15%;border-right:2px solid #995844}
+.lips{position:absolute;left:36%;top:70%;width:28%;height:8%;background:#8d3046;clip-path:polygon(0 30%,28% 0,50% 18%,72% 0,100% 30%,85% 75%,50% 100%,15% 75%)}
+.ear{position:absolute;top:51%;width:12%;height:19%;border-radius:50%;background:#b9735b}.ear.l{left:-8%}.ear.r{right:-8%}
+.neck{position:absolute;z-index:2;left:43%;top:21%;width:14%;height:10%;background:#b8765e}
+.arms{position:absolute;z-index:2;left:12%;top:29%;width:76%;height:39%;border-left:24px solid #b97660;border-right:24px solid #c17c63;border-radius:30px}
+.top{position:absolute;z-index:4;left:25%;top:26%;width:50%;height:28%;background:var(--top,#17151a);clip-path:polygon(23% 0,77% 0,100% 25%,84% 100%,16% 100%,0 25%);border-radius:10px}
+.cardigan{position:absolute;z-index:5;left:15%;top:29%;width:70%;height:36%;border-left:18px solid var(--jacket,#fff0df);border-right:18px solid var(--jacket,#fff0df);border-radius:22px 22px 5px 5px;opacity:.95}
+.waist{position:absolute;z-index:5;top:52%;left:29%;width:42%;height:3%;background:#c8a15f;border-radius:6px}
+.pants{position:absolute;z-index:4;top:54%;left:25%;width:50%;height:34%;background:var(--pants,#7392b0);clip-path:polygon(0 0,100% 0,88% 100%,54% 100%,50% 30%,43% 100%,12% 100%);border-radius:5px}
+.legs{position:absolute;z-index:2;top:83%;left:34%;width:32%;height:14%;background:linear-gradient(90deg,#995a46,#c58268,#a9634e);clip-path:polygon(0 0,46% 0,42% 100%,12% 100%,20% 30%,0 100%,0 100%)}
+.legs:after{content:"";position:absolute;left:50%;width:50%;height:100%;background:linear-gradient(90deg,#a65f4b,#ca8468);clip-path:polygon(0 0,100% 0,100% 100%,60% 100%,52% 30%,35% 100%,0 100%)}
+.shoes{position:absolute;z-index:6;left:23%;bottom:0;width:54%;height:4%;display:flex;justify-content:space-between}.shoes:before,.shoes:after{content:"";width:42%;background:#fff;border-radius:12px 12px 5px 5px;box-shadow:0 2px 4px #3334}
+.bag{position:absolute;z-index:7;left:8%;top:57%;font-size:38px;filter:drop-shadow(0 3px 3px #3333)}
+.glasses{position:absolute;z-index:7;top:8%;right:18%;font-size:25px;transform:rotate(-8deg)}
+.preview-buttons{position:absolute;left:16px;bottom:18px;display:flex;flex-direction:column;gap:9px}.round{width:45px;height:45px;border-radius:50%;background:#1b1018;color:#ff9acb;border:1px solid #ff9acb;font-size:20px}
+.lookname{position:absolute;left:16px;bottom:12px;transform:translateY(-160%);font-size:10px;font-weight:900;letter-spacing:1.5px;color:#735763;text-transform:uppercase}
+.panel{background:#fff8fb;display:flex;flex-direction:column;border-left:1px solid #f0e0e8;min-width:0}
+.panel-head{padding:20px 18px 12px}.eyebrow{font-size:10px;letter-spacing:2px;color:#e13c8a;font-weight:900;text-transform:uppercase}.panel h1{font-size:24px;letter-spacing:-.8px;margin:4px 0}.desc{font-size:12px;line-height:1.5;color:#917d88}
+.tabs{display:flex;gap:6px;padding:0 14px 12px;overflow:auto}.tab{flex:1;min-width:65px;background:#f5e8ef;border-radius:12px;padding:10px 5px;color:#745565;font-size:10px;font-weight:900}.tab.active{background:var(--pink);color:white;box-shadow:0 4px 10px #f34f9b44}
+.category-row{display:flex;gap:6px;padding:0 14px 13px;overflow:auto}.category{white-space:nowrap;background:#fff;border:1px solid #eadce4;border-radius:20px;padding:8px 11px;color:#735565;font-size:11px;font-weight:800}.category.active{background:#25151f;color:#ffc1de;border-color:#25151f}
+.section-title{display:flex;justify-content:space-between;align-items:center;padding:0 17px 10px;font-size:13px;font-weight:900}.section-title small{font-size:10px;color:#a18b96;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:0 14px 14px;overflow:auto;max-height:420px}
+.item{background:#fff;border:1px solid #f0e2e9;border-radius:15px;padding:10px 7px;min-height:106px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:#4a3441;font-size:11px;font-weight:800;text-align:center}
+.item .emoji{width:100%;height:57px;border-radius:11px;background:linear-gradient(135deg,#f9eef3,#fff);display:grid;place-items:center;font-size:36px}
+.item.selected{border:2px solid var(--pink);background:#fff1f7;padding:9px 6px;box-shadow:0 3px 12px #f34f9b1c}
+.item.selected .emoji{background:#ffe1ee}
+.color-row{display:flex;justify-content:center;gap:11px;padding:0 10px 13px}.color{width:27px;height:27px;border-radius:50%;border:2px solid white;box-shadow:0 0 0 1px #e3d4dd}.color.active{box-shadow:0 0 0 2px var(--pink)}
+.apply{margin:0 14px 14px;background:linear-gradient(100deg,#fa4f9e,#d92b83);color:#fff;border-radius:28px;padding:15px;font-weight:900;letter-spacing:1px;box-shadow:0 5px 0 #b92c70}
+.bottom-nav{height:64px;background:#170d14;color:#f8c1dc;display:flex;justify-content:space-around;align-items:center;padding-bottom:env(safe-area-inset-bottom)}.navitem{font-size:10px;text-align:center;display:flex;flex-direction:column;gap:3px;align-items:center}.navitem b{font-size:20px}.navitem.active{color:#ff6fb3}
+.toast{position:fixed;bottom:82px;left:50%;transform:translateX(-50%);background:#1b1018;color:#fff;padding:12px 18px;border-radius:25px;font-size:12px;font-weight:800;opacity:0;pointer-events:none;transition:.2s;z-index:99;white-space:nowrap}.toast.show{opacity:1}
+@media(max-width:720px){header{height:60px;padding:0 10px}.logo{font-size:20px}.coin{padding:7px 8px;font-size:10px}.main{display:flex;flex-direction:column}.preview{min-height:590px;height:62dvh;max-height:730px}.avatar{height:min(78%,500px);width:min(63%,300px);margin-bottom:42px}.panel{border-left:0;border-top:1px solid #f0e0e8}.panel-head{padding:16px 16px 10px}.panel h1{font-size:22px}.tabs{padding:0 10px 10px}.category-row{padding:0 10px 12px}.grid{grid-template-columns:repeat(3,minmax(0,1fr));max-height:none;padding:0 10px 12px;gap:7px}.item{min-height:90px;padding:7px 4px;font-size:10px}.item .emoji{height:48px;font-size:30px}.item.selected{padding:6px 3px}.apply{margin:0 10px 12px}.bottom-nav{position:sticky;bottom:0;z-index:10}.lookname{font-size:9px}}
+</style>
+</head>
+<body><div class="app">
+<header><div class="logo">Jessica’s<small>C L O S E T</small></div><div class="wallet"><div class="coin">👑 100</div><div class="coin">💵 5.000</div><div class="coin">💎 300</div></div></header>
+<main>
+<section class="preview"><div class="room"></div><div class="label">✨ LOOK DO DIA</div><div class="neon">sonhe<br>planeje<br>conquiste ♡</div>
+<div class="avatar" id="avatar"><div class="hair-back" id="hair"></div><div class="legs"></div><div class="neck"></div><div class="face"><i class="ear l"></i><i class="ear r"></i><i class="brow l"></i><i class="brow r"></i><i class="eye l"></i><i class="eye r"></i><i class="nose"></i><i class="lips"></i></div><div class="fringe"></div><div class="glasses" id="glasses">🕶️</div><div class="arms"></div><div class="cardigan" id="cardigan"></div><div class="top" id="top"></div><div class="waist"></div><div class="pants" id="pants"></div><div class="shoes" id="shoes"></div><div class="bag" id="bag">👜</div></div>
+<div class="lookname" id="lookname">INFLUENCER CHIC · LOOK 01</div><div class="preview-buttons"><button class="round" id="random" title="Look surpresa">🎲</button><button class="round" id="save" title="Salvar look">♡</button></div></section>
+<aside class="panel"><div class="panel-head"><div class="eyebrow">Seu momento fashion</div><h1>Monte seu look</h1><div class="desc">Misture tendências e crie uma produção digna de blogueira.</div></div>
+<div class="tabs"><button class="tab active" data-filter="todos">♧ Todos</button><button class="tab" data-filter="favoritos">♡ Favoritos</button><button class="tab" data-filter="novidades">✦ Novidades</button></div>
+<div class="category-row" id="categories"></div><div class="section-title"><span id="sectionTitle">Tendências da semana</span><small id="itemCount">12 peças</small></div><div class="grid" id="items"></div>
+<div class="color-row" id="colors"><button class="color active" data-color="#17151a" style="background:#17151a"></button><button class="color" data-color="#fff4eb" style="background:#fff4eb"></button><button class="color" data-color="#f05a9f" style="background:#f05a9f"></button><button class="color" data-color="#8096b2" style="background:#8096b2"></button><button class="color" data-color="#c6a174" style="background:#c6a174"></button></div>
+<button class="apply" id="apply">♧ &nbsp; USAR ESTA PEÇA</button></aside></main>
+<footer class="bottom-nav"><div class="navitem"><b>⌂</b>Início</div><div class="navitem"><b>♧</b>Meu Closet</div><div class="navitem active"><b>☆</b>Looks</div><div class="navitem"><b>♡</b>Favoritos</div><div class="navitem"><b>▣</b>Galeria</div></footer>
+</div><div class="toast" id="toast">Look salvo no seu closet! 💖</div>
+<script>
+const wardrobe={
+"Blusas":[["🖤","Cropped preto","top","#17151a"],["🤍","Cropped branco","top","#fff4eb"],["🎀","Cropped rosa","top","#f05a9f"],["✨","Body acetinado","top","#c6a174"],["🧥","Blazer oversized","jacket","#fff4eb"],["🩵","Camisa azul","top","#a8cfe1"]],
+"Calças":[["👖","Jeans wide leg","pants","#8096b2"],["🖤","Alfaiataria preta","pants","#29232d"],["🤎","Calça chocolate","pants","#795548"],["🌸","Calça rosa","pants","#e6a4c1"],["🤍","Calça creme","pants","#f0dfcf"],["🌿","Cargo verde","pants","#75836a"]],
+"Saias":[["🖤","Mini saia preta","pants","#29232d"],["🎀","Mini saia rosa","pants","#e9a1c2"],["🤍","Saia plissada","pants","#fff4eb"],["✨","Saia acetinada","pants","#c6a174"]],
+"Vestidos":[["👗","Vestido preto","dress","#17151a"],["🌹","Vestido vermelho","dress","#a82f49"],["🎀","Vestido romântico","dress","#efb6cd"],["🤍","Vestido clean","dress","#fff4eb"],["💜","Vestido lilás","dress","#b7a0d8"]],
+"Sapatos":[["👟","Tênis branco","shoes","#fff4eb"],["👠","Salto nude","shoes","#d9b6a4"],["🥾","Bota preta","shoes","#25232a"],["✨","Sandália dourada","shoes","#c8a66a"]],
+"Bolsas":[["👜","Bolsa nude","bag","#d9b9a5"],["🖤","Mini bag preta","bag","#24212a"],["🎀","Bolsa rosa","bag","#e9a0c0"],["🤎","Bolsa caramelo","bag","#9a6246"]],
+"Acessórios":[["🕶️","Óculos fashion","accessory","#17151a"],["💎","Brincos brilho","accessory","#c6a174"],["📿","Colar delicado","accessory","#c6a174"],["🎀","Laço romântico","accessory","#e9a0c0"]],
+"Cabelos":[["👩🏽‍🦱","Cachos definidos","hair","#452329"],["💁🏻‍♀️","Liso polido","hair","#2b171a"],["👱🏼‍♀️","Loiro iluminado","hair","#c69b61"],["👩🏻‍🦰","Ruivo chocolate","hair","#8c4b35"]]
+};
+let cat="Blusas", filter="todos", selected=0, favorites=new Set(), look=1, saved=[];
+const $=s=>document.querySelector(s);
+function drawCats(){ $("#categories").innerHTML=Object.keys(wardrobe).map(c=>`<button class="category ${c===cat?'active':''}" data-cat="${c}">${c}</button>`).join("");document.querySelectorAll(".category").forEach(b=>b.onclick=()=>{cat=b.dataset.cat;selected=0;drawCats();drawItems()})}
+function drawItems(){let list=wardrobe[cat];if(filter==="favoritos")list=list.filter(x=>favorites.has(x[1]));if(filter==="novidades")list=list.slice(-3);$("#sectionTitle").textContent=cat+" tendência";$("#itemCount").textContent=list.length+" peças";$("#items").innerHTML=list.map((x,i)=>`<button class="item ${i===selected?'selected':''}" data-i="${i}"><span class="emoji">${x[0]}</span><span>${x[1]}</span>${favorites.has(x[1])?'<small>♥ Favorito</small>':''}</button>`).join("");document.querySelectorAll(".item").forEach(b=>b.onclick=()=>{selected=+b.dataset.i;drawItems();applyPiece(list[selected])})}
+function applyPiece(item){if(!item)return;const [emoji,name,type,color]=item;const avatar=$("#avatar");if(type==="top"){$("#top").style.background=color;$("#top").style.display="block"}if(type==="pants"){$("#pants").style.background=color;$("#pants").style.display="block"}if(type==="jacket"){$("#cardigan").style.setProperty("--jacket",color);$("#cardigan").style.display="block"}if(type==="dress"){$("#top").style.background=color;$("#pants").style.background=color;$("#top").style.height="33%";$("#pants").style.top="52%";$("#pants").style.height="36%"}if(type==="shoes"){$("#shoes").style.setProperty("--shoe",color);$("#shoes").style.background=color}if(type==="bag")$("#bag").textContent=emoji;if(type==="accessory")$("#glasses").textContent=emoji;if(type==="hair"){$("#hair").style.background=color;$(".fringe").style.background=color}$("#lookname").textContent="INFLUENCER CHIC · LOOK "+String(look).padStart(2,"0")}
+function toast(t){$("#toast").textContent=t;$("#toast").classList.add("show");setTimeout(()=>$("#toast").classList.remove("show"),1900)}
+document.querySelectorAll(".tab").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===b));drawItems()});
+$("#items").addEventListener("dblclick",e=>{const b=e.target.closest(".item");if(!b)return;const item=wardrobe[cat][+b.dataset.i];favorites.add(item[1]);drawItems();toast("Adicionado aos favoritos ♥")});
+$("#apply").onclick=()=>{const list=filter==="favoritos"?wardrobe[cat].filter(x=>favorites.has(x[1])):filter==="novidades"?wardrobe[cat].slice(-3):wardrobe[cat];applyPiece(list[selected]);toast("Peça aplicada ao look ✨")};
+$("#save").onclick=()=>{saved.push({look,cat,selected});favorites.add(wardrobe[cat][selected]?.[1]||"Look "+look);toast("Look salvo nos favoritos! 💖");look++;$("#lookname").textContent="INFLUENCER CHIC · LOOK "+String(look).padStart(2,"0")};
+$("#random").onclick=()=>{Object.keys(wardrobe).forEach(c=>{const item=wardrobe[c][Math.floor(Math.random()*wardrobe[c].length)];applyPiece(item)});cat="Blusas";selected=Math.floor(Math.random()*wardrobe[cat].length);drawCats();drawItems();look++;$("#lookname").textContent="LOOK SURPRESA · "+String(look).padStart(2,"0");toast("Look surpresa montado! 🎲")};
+document.querySelectorAll(".color").forEach(b=>b.onclick=()=>{document.querySelectorAll(".color").forEach(x=>x.classList.toggle("active",x===b));const color=b.dataset.color;if(cat==="Calças")$("#pants").style.background=color;else $("#top").style.background=color});
+drawCats();drawItems();
+</script></body></html>
